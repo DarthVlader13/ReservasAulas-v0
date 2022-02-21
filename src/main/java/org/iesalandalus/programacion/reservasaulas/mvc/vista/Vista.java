@@ -71,7 +71,7 @@ public class Vista {
 			aula = Consola.leerAula();
 			aula = controlador.buscarAula(aula);
 			if (aula != null) {
-				System.out.println("El aula buscado es: " + aula);
+				System.out.println("El aula buscada es: " + aula);
 			} else {
 				System.out.println("No existe ningún aula con ese nombre");
 			}
