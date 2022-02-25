@@ -86,6 +86,12 @@ public class Profesor {
 		this.telefono = telefono;
 	}
 	
+	// CONSTRUCTOR CON DOS PARAMETROS
+		public Profesor(String nombre, String correo) {
+			setNombre(nombre);
+			setCorreo(correo);
+		}
+	
 	// AHORA PODEMOS GENERAR EL CONSTRUCTOR CON TRES PARAMETROS
 	public Profesor(String nombre, String correo, String telefono) {
 		super();
@@ -93,7 +99,7 @@ public class Profesor {
 		this.correo = correo;
 		this.telefono = telefono;
 	}
-	
+		
 	// GENERAMOS EL CONSTRUCTOR COPIA
 	public Profesor(Profesor otroProfesor) {
 		if (otroProfesor == null) {
@@ -124,8 +130,7 @@ public class Profesor {
 		if (getClass() != obj.getClass())
 			return false;
 		Profesor other = (Profesor) obj;
-		return Objects.equals(correo, other.correo) && Objects.equals(nombre, other.nombre)
-				&& Objects.equals(telefono, other.telefono);
+		return Objects.equals(nombre, other.nombre);
 	}
 
 
