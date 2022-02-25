@@ -5,9 +5,9 @@ import java.util.Objects;
 public class Reserva {
 
 	// DECLARACIÓN DE ATRIBUTOS
-	public Profesor profesor;
-	public Aula aula;
-	public Permanencia permanencia;
+	private Profesor profesor;
+	private Aula aula;
+	private Permanencia permanencia;
 
 	// GENERAMOS GETTERS AND SETTERS
 
@@ -15,14 +15,14 @@ public class Reserva {
 	 * @return the profesor
 	 */
 	public Profesor getProfesor() {
-		return profesor;
+		return new Profesor(profesor);
 	}
 
 	/**
 	 * @param profesor the profesor to set
 	 */
 	private void setProfesor(Profesor profesor) {
-		if (profesor == null) {
+		if (profesor==null) {
 			throw new NullPointerException("ERROR: La reserva debe estar a nombre de un profesor.");
 		}
 		this.profesor = new Profesor(profesor);
@@ -32,7 +32,7 @@ public class Reserva {
 	 * @return the aula
 	 */
 	public Aula getAula() {
-		return aula;
+		return new Aula(aula);
 	}
 
 	/**
@@ -49,7 +49,7 @@ public class Reserva {
 	 * @return the permanencia
 	 */
 	public Permanencia getPermanencia() {
-		return permanencia;
+		return new Permanencia(permanencia);
 	}
 
 	/**
@@ -63,11 +63,10 @@ public class Reserva {
 	}
 
 	// CONSTRUCTOR CON PARAMETROS
-	public Reserva(Profesor profesor, Aula aula, Permanencia permanencia) {
-		super();
-		this.profesor = profesor;
-		this.aula = aula;
-		this.permanencia = permanencia;
+	public Reserva (Profesor profesor, Aula aula, Permanencia permanencia) {
+		setProfesor(profesor);
+		setAula(aula);
+		setPermanencia(permanencia);
 	}
 
 	// CONSTRUCTOR COPIA
