@@ -12,7 +12,7 @@ public class Reservas {
 	// DECLARACIÓN DE ATRIBUTOS
 	private int capacidad;
 	private int tamano;
-	Reserva[] coleccionReservas;
+	private Reserva[] coleccionReservas;
 
 	// CREAMOS CONSTRUCTOR CON PARÁMETROS
 	public Reservas(int capacidad) {
@@ -46,13 +46,13 @@ public class Reservas {
 
 	// CREAMOS COPIAPROFUNDA
 	private Reserva[] copiaProfundaReservas() {
-		Reserva[] copiaReservas = new Reserva[capacidad];
-		for (int i = 0; !tamanoSuperado(i); i++) {
-			if (coleccionReservas[i] != null)
-				copiaReservas[i] = new Reserva(coleccionReservas[i]);
+		int indice = 0;
+		Reserva[] copiaProfunda = new Reserva[tamano];
+		for (int i = indice; i <= tamano - 1; ++i) {
+			copiaProfunda[indice] = new Reserva(coleccionReservas[i]);
+			indice++;
 		}
-		return copiaReservas;
-
+		return copiaProfunda;
 	}
 
 	// CREAMOS MÉTODO INSERTAR
@@ -60,18 +60,16 @@ public class Reservas {
 		if (reserva == null) {
 			throw new NullPointerException("ERROR: No se puede insertar una reserva nula.");
 		}
-		int indice = buscarIndice(reserva);
-		if (capacidadSuperada(indice)) {
+		int posibleHueco = buscarIndice(reserva);
+		if (capacidadSuperada(tamano)) {
 			throw new OperationNotSupportedException("ERROR: No se aceptan más reservas.");
-		}
-		if (tamanoSuperado(indice)) {
-			coleccionReservas[indice] = new Reserva(reserva);
+		} else if (tamanoSuperado(posibleHueco)) {
+			coleccionReservas[tamano] = new Reserva(reserva);
 			tamano++;
 		} else {
-			throw new OperationNotSupportedException("ERROR: Ya existe una reserva con ese nombre.");
+			throw new OperationNotSupportedException("ERROR: Ya existe un reserva con ese nombre.");
 		}
 	}
-
 	// CREAMOS MÉTODO BUSCARINDICE
 	private int buscarIndice(Reserva reserva) {
 		boolean encontrado = false;
@@ -119,10 +117,9 @@ public class Reservas {
 
 	// CREAMOS MÉTODO DESPLAZARUNAPOSICIONHACIAIZQUIERDA
 	private void desplazarUnaPosicionHaciaIzquierda(int indice) {
-		for (int i = indice; !tamanoSuperado(i); i++) {
-			coleccionReservas[i] = coleccionReservas[i + 1];
+		for (int i = indice; i < tamano - 1; ++i) {
+			coleccionReservas[i] = new Reserva(coleccionReservas[i + 1]);
 		}
-		tamano--;
 	}
 
 	// CREAMOS MÉTODO BORRAR
@@ -144,9 +141,11 @@ public class Reservas {
 	// CREAMOS MÉTODO REPRESENTAR
 	public String[] representar() {
 		String[] representacion = new String[tamano];
-		for (int i = 0; i < representacion.length; i++)
-			if (coleccionReservas != null)
-				representacion[i] = "" + coleccionReservas[i];
+		int indice = 0;
+		for (int i = indice; i <= tamano - 1; ++i) {
+			representacion[indice] = coleccionReservas[i].toString();
+			indice++;
+		}
 		return representacion;
 	}
 
@@ -168,15 +167,18 @@ public class Reservas {
 
 	// CREAMOS MÉTODO GETRESERVASAULA
 	public Reserva[] getReservasAula(Aula aula) {
-		if (aula == null) {
-			throw new NullPointerException("ERROR: No se puede reservar un aula nula.");
-		}
 		Reserva[] reservasAula = new Reserva[capacidad];
-		for (int i = 0; i < tamano; i++)
-			if (coleccionReservas[i].getAula().equals(aula))
-				reservasAula[i] = coleccionReservas[i];
+		int indice = 0;
+		if (aula == null) {
+			throw new NullPointerException("ERROR: No se puede buscar una reserva nula.");
+		}
+		for (int i = 0; i <= tamano - 1; i++) {
+			if (aula.equals(coleccionReservas[i].getAula())) {
+				reservasAula[indice] = new Reserva(coleccionReservas[i]);
+				indice++;
+			}
+		}
 		return reservasAula;
-
 	}
 
 	// CREAMOS MÉTODO GETRESERVASPERMANENCIA
@@ -204,8 +206,7 @@ public class Reservas {
 			throw new NullPointerException("ERROR: No se puede consultar la disponibilidad de una permanencia nula.");
 		}
 		for (int i = 0; i <= tamano - 1; i++) {
-			if (aula.equals(coleccionReservas[i].getAula())
-					&& permanencia.equals(coleccionReservas[i].getPermanencia())) {
+			if (aula.equals(coleccionReservas[i].getAula()) && permanencia.equals(coleccionReservas[i].getPermanencia())) {
 				disponibilidad = false;
 			}
 		}

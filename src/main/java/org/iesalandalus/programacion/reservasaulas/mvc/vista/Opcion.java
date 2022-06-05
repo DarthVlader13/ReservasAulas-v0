@@ -2,8 +2,8 @@ package org.iesalandalus.programacion.reservasaulas.mvc.vista;
 
 public enum Opcion {
 
-	//OPCIONES A MOSTRAR
-	
+	// OPCIONES A MOSTRAR
+
 	SALIR("Salir") {
 		public void ejecutar() {
 			vista.salir();
@@ -46,7 +46,7 @@ public enum Opcion {
 	},
 	LISTAR_PROFESORES("Listar profesores") {
 		public void ejecutar() {
-			vista.listarProfesor();
+			vista.listarProfesores();
 		}
 	},
 	INSERTAR_RESERVA("Insertar reserva") {

@@ -9,7 +9,7 @@ public class Profesores {
 	// DECLARACIÓN DE ATRIBUTOS
 	private int capacidad;
 	private int tamano;
-	Profesor[] coleccionProfesores;
+	private Profesor[] coleccionProfesores;
 
 	// CREAMOS MÉTODO GETTAMANO Y GET CAPACIDAD
 	/**
@@ -72,16 +72,19 @@ public class Profesores {
 
 	// CREAMOS MÉTODO BUSCAR ÍNDICE
 	private int buscarIndice(Profesor profesor) {
-		int indice = 0;
-		boolean profesorEncontrado = false;
-		while (!tamanoSuperado(indice) && !profesorEncontrado) {
-			if (coleccionProfesores[indice].equals(profesor)) {
-				profesorEncontrado = true;
-			} else {
-				indice++;
+		boolean encontrado = false;
+		int resultado = 0;
+		for (int i = 0; i <= tamano-1; i++) {
+			if (profesor.equals(coleccionProfesores[i])) {
+				encontrado = true;
+				resultado = i;
 			}
 		}
-		return indice;
+		if (encontrado) {
+			return resultado;
+		} else {
+			return tamano + 1;
+		}
 	}
 
 	// CREAMOS MÉTODO TAMANOSUPERADO Y CAPACIDADSUPERADA
@@ -100,10 +103,9 @@ public class Profesores {
 
 	// CREAMOS MÉTODO DESPLAZARUNAPOSICIONALAIZQUIERDA
 	private void desplazarUnaPosicionHaciaIzquierda(int indice) {
-		for (int i = indice; !tamanoSuperado(i); i++) {
-			coleccionProfesores[i] = coleccionProfesores[i + 1];
+		for (int i = indice; i < tamano-1; ++i) {
+			coleccionProfesores[i] = new Profesor(coleccionProfesores[i + 1]);
 		}
-		tamano--;
 	}
 
 	// CREAMOS MÉTODO BUSCAR

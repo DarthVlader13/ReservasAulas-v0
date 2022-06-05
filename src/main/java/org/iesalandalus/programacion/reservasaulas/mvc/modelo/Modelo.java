@@ -14,9 +14,9 @@ public class Modelo {
 
 	// DECLARACIÓN DE ATRIBUTOS
 	private static int CAPACIDAD = 10;
-	Profesores profesores;
-	Aulas aulas;
-	Reservas reservas;
+	private Profesores profesores;
+	private Aulas aulas;
+	private Reservas reservas;
 
 	// CREAMOS EL CONSTRUCTOR QUE NOS CREA LOS OBJETOS ANTERIORES CON LA CAPACIDAD
 	// REQUERIDA

@@ -22,10 +22,12 @@ public class Reserva {
 	 * @param profesor the profesor to set
 	 */
 	private void setProfesor(Profesor profesor) {
-		if (profesor==null) {
+		if (profesor == null) {
 			throw new NullPointerException("ERROR: La reserva debe estar a nombre de un profesor.");
+		} else {
+			this.profesor = new Profesor(profesor);
 		}
-		this.profesor = new Profesor(profesor);
+
 	}
 
 	/**
@@ -41,8 +43,10 @@ public class Reserva {
 	private void setAula(Aula aula) {
 		if (aula == null) {
 			throw new NullPointerException("ERROR: La reserva debe ser para un aula concreta.");
+		} else {
+			this.aula = new Aula(aula);
 		}
-		this.aula = new Aula(aula);
+
 	}
 
 	/**
@@ -58,25 +62,29 @@ public class Reserva {
 	private void setPermanencia(Permanencia permanencia) {
 		if (permanencia == null) {
 			throw new NullPointerException("ERROR: La reserva se debe hacer para una permanencia concreta.");
+		} else {
+			this.permanencia = new Permanencia(permanencia);
 		}
-		this.permanencia = new Permanencia(permanencia);
+
 	}
 
 	// CONSTRUCTOR CON PARAMETROS
-	public Reserva (Profesor profesor, Aula aula, Permanencia permanencia) {
+	public Reserva(Profesor profesor, Aula aula, Permanencia permanencia) {
 		setProfesor(profesor);
 		setAula(aula);
 		setPermanencia(permanencia);
 	}
 
 	// CONSTRUCTOR COPIA
-	public Reserva(Reserva r) {
-		if (r == null) {
+	public Reserva(Reserva otraReserva) {
+		if (otraReserva == null) {
 			throw new NullPointerException("ERROR: No se puede copiar una reserva nula.");
+		} else {
+			setProfesor(otraReserva.getProfesor());
+			setAula(otraReserva.getAula());
+			setPermanencia(otraReserva.getPermanencia());
 		}
-		setProfesor(r.getProfesor());
-		setAula(r.getAula());
-		setPermanencia(r.getPermanencia());
+
 	}
 
 	// GENERAMOS EQUALS AND HASH
@@ -100,7 +108,7 @@ public class Reserva {
 	// GENERAMOS METODO TOSTRING
 	@Override
 	public String toString() {
-		return "Reserva [profesor=" + profesor + ", aula=" + aula + ", permanencia=" + permanencia + "]";
+		return "Profesor=" + profesor.toString() + ", aula=" + aula.toString() + ", permanencia=" + permanencia.toString();
 	}
 
 }

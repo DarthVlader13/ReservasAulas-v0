@@ -12,8 +12,8 @@ import org.iesalandalus.programacion.reservasaulas.mvc.vista.Vista;
 public class Controlador {
 
 	// DECLARACIÓN DE ATRIBUTOS
-	Modelo modelo;
-	Vista vista;
+	private Modelo modelo;
+	private Vista vista;
 
 	// CREAMOS CONSTRUCTOR CON PARÁMETROS DE MODELO Y VISTA
 	public Controlador(Modelo modelo, Vista vista) {

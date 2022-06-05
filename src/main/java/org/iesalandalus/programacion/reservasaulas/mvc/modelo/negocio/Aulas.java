@@ -9,7 +9,7 @@ public class Aulas {
 	//DECLARACIÓN DE ATRIBUTOS
 	private int capacidad;
 	private int tamano;
-	Aula[] coleccionAulas;
+	private Aula[] coleccionAulas;
 	
 	//CONSTRUCTOR CON PARAMETROS
 	public Aulas(int capacidadAulas) {
